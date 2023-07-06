@@ -5,9 +5,6 @@ import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 const UserProfile = ({ params }) => {
-	const searchParams = useSearchParams();
-	const userName = searchParams.get("name");
-
 	const [userPosts, setUserPosts] = useState([]);
 
 	useEffect(() => {
