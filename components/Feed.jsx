@@ -6,13 +6,10 @@ import PromptCard from "./PromptCard";
 const PromptCardList = ({ data, handleTagClick }) => {
 	return (
 		<div className="mt-16 prompt_layout">
-			{data.map((post) => (
-				<PromptCard
-					key={post._id}
-					post={post}
-					handleTagClick={handleTagClick}
-				/>
-			))}
+			{data.map((post) => {
+				console.log("post -->", post);
+				return <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />;
+			})}
 		</div>
 	);
 };
@@ -39,12 +36,7 @@ const Feed = () => {
 	//SECTION Vars
 	const filterPrompts = (searchText) => {
 		const regex = new RegExp(searchText, "i");
-		return posts.filter(
-			(item) =>
-				regex.test(item.tag) ||
-				regex.test(item.prompt) ||
-				regex.test(item.creator.username)
-		);
+		return posts.filter((item) => regex.test(item.tag) || regex.test(item.prompt) || regex.test(item.creator.username));
 	};
 
 	//SECTION FUNCTIONS
@@ -78,10 +70,7 @@ const Feed = () => {
 				/>
 			</form>
 			{searchText ? (
-				<PromptCardList
-					data={searchedResults}
-					handleTagClick={handleTagClick}
-				/>
+				<PromptCardList data={searchedResults} handleTagClick={handleTagClick} />
 			) : (
 				<PromptCardList data={posts} handleTagClick={handleTagClick} />
 			)}
