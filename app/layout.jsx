@@ -4,8 +4,8 @@ import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
 export const metadata = {
-	title: "Promptopia",
-	description: "Discover and share AI prompts",
+	title: "Mnemosyne",
+	description: "Your digital memory vault inspired by the Greek goddess of memory. Save and cherish prompts for later use.",
 };
 
 const RootLayout = ({ children }) => {
