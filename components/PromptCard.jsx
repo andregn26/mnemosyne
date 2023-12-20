@@ -24,7 +24,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 	return (
 		<div className="prompt_card">
 			<div className="flex justify-between items-start gap-5">
-				<div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+				<div className="flex-1 flex justify-start items-center gap-3">
 					<Image
 						priority={true}
 						src={post.creator.image}
@@ -34,8 +34,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						className="rounded-full object-contain"
 					/>
 					<div className="flex flex-col">
-						<h3 className="font-satoshi font-semibold text-gray-900">{post.creator.username}</h3>
-						<p className="font-inter text-sm text-gray-500">{post.creator.email}</p>
+						<h3 className=" font-semibold text-gray-50">{post.creator.username}</h3>
+						<p className=" text-sm text-gray-400">{post.creator.email}</p>
 					</div>
 				</div>
 				<div className="copy_btn" onClick={handleCopy}>
@@ -47,9 +47,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 					/>
 				</div>
 			</div>
-			<p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+			<p className="my-4  text-sm text-gray-200">{post.prompt}</p>
 			<p
-				className="font-inter text-sm blue_gradient cursor-pointer"
+				className=" text-sm text-persian-rose-400 font-semibold cursor-pointer"
 				onClick={() => handleTagClick && handleTagClick(post.tag)}>
 				#{post.tag}
 			</p>

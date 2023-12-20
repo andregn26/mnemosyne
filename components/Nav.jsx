@@ -36,15 +36,13 @@ const Nav = () => {
 			<div className="sm:flex hidden">
 				{session?.user ? (
 					<div className="flex gap-3 md:gap-5">
-						<Link href="/create-prompt" className="black_btn">
+						<Link href="/create-prompt" className="my_btn">
 							Create Post
 						</Link>
-						<button
-							type="button"
-							onClick={signOut}
-							className="outline_btn">
+						<button type="button" onClick={signOut} className="outline_btn">
 							Sign Out
 						</button>
+
 						<Link href="/profile">
 							<Image
 								src={session?.user.image}
@@ -65,7 +63,7 @@ const Nav = () => {
 									onClick={() => {
 										signIn(provider.id);
 									}}
-									className="black_btn">
+									className="my_btn">
 									Sign In
 								</button>
 							))}
@@ -83,41 +81,29 @@ const Nav = () => {
 							height={37}
 							className="rounded-full"
 							alt="profile"
-							onClick={() =>
-								setToggleDropdown((prev) => !prev)
-							}
+							onClick={() => setToggleDropdown((prev) => !prev)}
 						/>
 						{toggleDropdown && (
 							<div className="dropdown">
 								<Link
 									href="/profile"
 									className="dropdown_link"
-									onClick={() =>
-										setToggleDropdown(
-											false
-										)
-									}>
+									onClick={() => setToggleDropdown(false)}>
 									My Profile
 								</Link>
 								<Link
 									href="/create-prompt"
 									className="dropdown_link"
-									onClick={() =>
-										setToggleDropdown(
-											false
-										)
-									}>
+									onClick={() => setToggleDropdown(false)}>
 									Create Prompt
 								</Link>
 								<button
 									type="button"
 									onClick={() => {
-										setToggleDropdown(
-											false
-										);
+										setToggleDropdown(false);
 										signOut();
 									}}
-									className="mt-5 w-full black_btn">
+									className="mt-5 w-full my_btn">
 									Sign Out
 								</button>
 							</div>
@@ -130,10 +116,8 @@ const Nav = () => {
 								<button
 									type="button"
 									key={provider.name}
-									onClick={() =>
-										signIn(provider.id)
-									}
-									className="black_btn">
+									onClick={() => signIn(provider.id)}
+									className="my_btn">
 									Sign In
 								</button>
 							))}
