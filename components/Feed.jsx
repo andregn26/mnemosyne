@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
+import useSWR from "swr";
 
 const PromptCardList = ({ data, handleTagClick }) => {
 	return (
 		<div className="mt-16 xl:mt-4 prompt_layout">
 			{data.map((post) => {
+				console.log(data);
 				return <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />;
 			})}
 		</div>
@@ -21,49 +23,40 @@ const Feed = () => {
 	const [searchedResults, setSearchedResults] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
-	//SECTION API call
-
 	//SECTION USE EFFECT
+
+	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	const { data, error } = useSWR("/api/prompt", fetcher);
+	useEffect(() => {
+		if (data) {
+			setPosts(data);
+		}
+	}, [data]);
+	if (error) return <div>Failed to load</div>;
+
 	// useEffect(() => {
-	// 	const timeOut = setTimeout(() => {
+	// 	const timer = setTimeout(() => {
 	// 		setIsLoading(false);
-	// 	}, 3000);
+	// 		console.log("Passed 4 seconds");
+	// 	}, 4000);
+
 	// 	const fetchPosts = async () => {
-	// 		const response = await fetch("/api/prompt");
-	// 		const data = await response.json();
-	// 		setPosts(data);
+	// 		try {
+	// 			const response = await fetch("/api/prompt");
+	// 			const data = await response.json();
+	// 			setPosts(data);
+	// 			console.log("posts fetched -->", data);
+	// 		} catch (error) {
+	// 			console.log("error in fetching posts", error);
+	// 		}
 	// 	};
+
 	// 	fetchPosts();
 
-	// 	timeOut();
 	// 	return () => {
-	// 		clearTimeout(timeOut);
+	// 		clearTimeout(timer);
 	// 	};
 	// }, []);
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-			console.log("Passed 4 seconds");
-		}, 4000);
-
-		const fetchPosts = async () => {
-			try {
-				const response = await fetch("/api/prompt");
-				const data = await response.json();
-				setPosts(data);
-				console.log("posts fetched -->", data);
-			} catch (error) {
-				console.log("error in fetching posts", error);
-			}
-		};
-
-		fetchPosts();
-
-		return () => {
-			clearTimeout(timer);
-		};
-	}, []);
 
 	//SECTION Vars
 	const filterPrompts = (searchText) => {
@@ -101,7 +94,7 @@ const Feed = () => {
 					className="search_input "
 				/>
 			</form>
-			{isLoading ? (
+			{!data ? (
 				<div>Is Loading</div>
 			) : (
 				<>
