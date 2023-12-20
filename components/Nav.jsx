@@ -22,7 +22,9 @@ const Nav = () => {
 	return (
 		<nav className="flex-between w-full mb-16 pt-3">
 			<Link href="/" className="flex gap-2 flex-center">
-				<p className="logo_text">Mnemosyne</p>
+				<p className="  font-semibold text-lg  tracking-wide">
+					<span className="rose_red-gradient">Mnemo</span>syne
+				</p>
 			</Link>
 
 			{/* Desktop Navigation */}

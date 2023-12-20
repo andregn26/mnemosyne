@@ -114,16 +114,12 @@
 }
 
 /* Nav Component */
-.logo_text {
-  @apply max-sm:hidden  font-semibold text-lg  tracking-wide;
-}
-
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-violent-violet-950 min-w-[210px] flex flex-col gap-2 justify-end items-end;
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+  @apply text-sm font-inter text-gray-200 hover:text-gray-50 font-medium;
 }
 
 /* PromptCard Component */

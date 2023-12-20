@@ -5,7 +5,7 @@ const Home = () => {
 		<section className="w-full relative flex-center flex-col xl:grid xl:grid-cols-12 xl:gap-16 xl:items-start xl:mt-12">
 			<div className="xl:col-span-4 xl:sticky xl:top-24 mt-24">
 				<h1 className="head_text text-center xl:text-left">
-					<span className="rose_red-gradient text-left">Mnemosyne</span>
+					<span className="rose_red-gradient text-left">Mnemosyne </span>
 					<br className="max-md:hidden" />
 					Prompt Vault
 				</h1>

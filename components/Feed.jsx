@@ -7,7 +7,6 @@ const PromptCardList = ({ data, handleTagClick }) => {
 	return (
 		<div className="mt-16 xl:mt-4 prompt_layout">
 			{data.map((post) => {
-				console.log("post -->", post);
 				return <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />;
 			})}
 		</div>
@@ -20,17 +19,50 @@ const Feed = () => {
 	const [searchText, setSearchText] = useState("");
 	const [searchTimeout, setSearchTimeout] = useState(null);
 	const [searchedResults, setSearchedResults] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	//SECTION API call
-	const fetchPosts = async () => {
-		const response = await fetch("/api/prompt");
-		const data = await response.json();
-		setPosts(data);
-	};
 
 	//SECTION USE EFFECT
+	// useEffect(() => {
+	// 	const timeOut = setTimeout(() => {
+	// 		setIsLoading(false);
+	// 	}, 3000);
+	// 	const fetchPosts = async () => {
+	// 		const response = await fetch("/api/prompt");
+	// 		const data = await response.json();
+	// 		setPosts(data);
+	// 	};
+	// 	fetchPosts();
+
+	// 	timeOut();
+	// 	return () => {
+	// 		clearTimeout(timeOut);
+	// 	};
+	// }, []);
+
 	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+			console.log("Passed 4 seconds");
+		}, 4000);
+
+		const fetchPosts = async () => {
+			try {
+				const response = await fetch("/api/prompt");
+				const data = await response.json();
+				setPosts(data);
+				console.log("posts fetched -->", data);
+			} catch (error) {
+				console.log("error in fetching posts", error);
+			}
+		};
+
 		fetchPosts();
+
+		return () => {
+			clearTimeout(timer);
+		};
 	}, []);
 
 	//SECTION Vars
@@ -69,10 +101,16 @@ const Feed = () => {
 					className="search_input "
 				/>
 			</form>
-			{searchText ? (
-				<PromptCardList data={searchedResults} handleTagClick={handleTagClick} />
+			{isLoading ? (
+				<div>Is Loading</div>
 			) : (
-				<PromptCardList data={posts} handleTagClick={handleTagClick} />
+				<>
+					{searchText ? (
+						<PromptCardList data={searchedResults} handleTagClick={handleTagClick} />
+					) : (
+						<PromptCardList data={posts} handleTagClick={handleTagClick} />
+					)}
+				</>
 			)}
 		</section>
 	);
