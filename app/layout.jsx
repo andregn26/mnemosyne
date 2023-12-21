@@ -12,7 +12,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
 	return (
 		<html lang="en">
-			<body className="font-grotesk bg-violent-violet-950 text-violent-violet-50">
+			<body className="relative font-grotesk bg-violent-violet-950 text-violent-violet-50  pb-32">
 				<Provider>
 					<div className="main">
 						<div className="gradient" />

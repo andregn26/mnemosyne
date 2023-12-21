@@ -2,8 +2,8 @@ import { Github, IconHeart, Instagram, Linkedin, Website } from "./Icons";
 
 const Footer = () => {
 	return (
-		<footer className="footer flex flex-col gap-6 xs:flex-row xs:justify-between  items-center p-4 bg-base-300 text-neutral-content">
-			<aside className="items-center">
+		<footer className="absolute bottom-0 left-0 w-full flex  flex-col gap-2 md:flex-row px-8 py-4 max-w-[1536px]">
+			<aside className=" w-full flex justify-center items-center md:justify-start">
 				<p>
 					Made with{" "}
 					<span>
@@ -12,7 +12,7 @@ const Footer = () => {
 					by AG
 				</p>
 			</aside>
-			<nav className="flex gap-4 md:place-self-center md:justify-self-end">
+			<nav className="flex justify-center gap-4">
 				<a href="https://www.linkedin.com/in/andrengregorio/" target="_blank" rel="noreferrer">
 					<Linkedin />
 				</a>

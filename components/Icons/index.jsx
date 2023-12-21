@@ -21,8 +21,8 @@ export const Github = ({ fillColor = "#fff", fillColorHover = "primary" }) => {
 		<svg
 			fill={fillColor}
 			className={`hover:fill-${fillColorHover} inline-block`}
-			width="24"
-			height="24"
+			width="18"
+			height="18"
 			viewBox="0 0 1920 1920"
 			xmlns="http://www.w3.org/2000/svg">
 			<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -41,8 +41,8 @@ export const Instagram = ({ fillColor = "#fff", fillColorHover = "primary" }) =>
 	return (
 		<svg
 			viewBox="0 0 24 24"
-			width="24"
-			height="24"
+			width="18"
+			height="18"
 			fill={fillColor}
 			className={`hover:fill-${fillColorHover} inline-block`}
 			xmlns="http://www.w3.org/2000/svg">
@@ -60,8 +60,8 @@ export const Website = ({ fillColor = "#fff", fillColorHover = "primary" }) => {
 	return (
 		<svg
 			viewBox="0 0 24 24"
-			width="24"
-			height="24"
+			width="18"
+			height="18"
 			fill={fillColor}
 			className={`hover:fill-${fillColorHover} inline-block`}
 			xmlns="http://www.w3.org/2000/svg">
@@ -80,8 +80,8 @@ export const Website = ({ fillColor = "#fff", fillColorHover = "primary" }) => {
 export const Linkedin = ({ fillColor = "#fff", fillColorHover = "primary" }) => {
 	return (
 		<svg
-			width="24"
-			height="24"
+			width="16"
+			height="16"
 			fill={fillColor}
 			className={`hover:fill-${fillColorHover} inline-block`}
 			version="1.1"
