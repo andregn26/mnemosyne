@@ -8,7 +8,9 @@ export const GET = async () => {
 
 		const prompts = await Prompt.find({}).populate("creator");
 
-		return new Response(JSON.stringify(prompts), { status: 200 });
+		const response = new Response(JSON.stringify(prompts), { status: 200 });
+
+		return response;
 	} catch (error) {
 		return new Response("failed to fetch all prompts", { status: 500 });
 	}

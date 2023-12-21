@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
-import useSWR from "swr";
+// import useSWR from "swr";
 
 const PromptCardList = ({ data, handleTagClick }) => {
 	return (
@@ -25,38 +25,31 @@ const Feed = () => {
 
 	//SECTION USE EFFECT
 
-	const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	const { data, error } = useSWR("/api/prompt", fetcher);
-	useEffect(() => {
-		if (data) {
-			setPosts(data);
-		}
-	}, [data]);
-	if (error) return <div>Failed to load</div>;
-
+	// const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	// const { data, error } = useSWR("/api/prompt", fetcher);
 	// useEffect(() => {
-	// 	const timer = setTimeout(() => {
-	// 		setIsLoading(false);
-	// 		console.log("Passed 4 seconds");
-	// 	}, 4000);
+	// 	if (data) {
+	// 		setPosts(data);
+	// 	}
+	// }, [data]);
+	// if (error) return <div>Failed to load</div>;
 
-	// 	const fetchPosts = async () => {
-	// 		try {
-	// 			const response = await fetch("/api/prompt");
-	// 			const data = await response.json();
-	// 			setPosts(data);
-	// 			console.log("posts fetched -->", data);
-	// 		} catch (error) {
-	// 			console.log("error in fetching posts", error);
-	// 		}
-	// 	};
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+			console.log("Passed 4 seconds");
+		}, 4000);
 
-	// 	fetchPosts();
+		fetch("/api/prompt")
+			.then((res) => res.json())
+			.then((data) => {
+				setPosts(data);
+			});
 
-	// 	return () => {
-	// 		clearTimeout(timer);
-	// 	};
-	// }, []);
+		return () => {
+			clearTimeout(timer);
+		};
+	}, []);
 
 	//SECTION Vars
 	const filterPrompts = (searchText) => {
@@ -94,7 +87,7 @@ const Feed = () => {
 					className="search_input "
 				/>
 			</form>
-			{!data ? (
+			{isLoading ? (
 				<div>Is Loading</div>
 			) : (
 				<>
