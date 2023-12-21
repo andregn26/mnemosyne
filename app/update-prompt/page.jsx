@@ -13,7 +13,7 @@ const EditPrompt = () => {
 	const promptId = searchParams.get("id");
 
 	const [submitting, setSubmitting] = useState(false);
-	const [post, setPost] = useState({ prompt: "", tag: "" });
+	const [post, setPost] = useState({ prompt: "", tag: "", isPrivate: false });
 
 	useEffect(() => {
 		const getPromptDetails = async () => {
@@ -22,6 +22,7 @@ const EditPrompt = () => {
 			setPost({
 				prompt: data.prompt,
 				tag: data.tag,
+				isPrivate: data.isPrivate,
 			});
 		};
 		getPromptDetails();
@@ -41,6 +42,7 @@ const EditPrompt = () => {
 				body: JSON.stringify({
 					prompt: post.prompt,
 					tag: post.tag,
+					isPrivate: post.isPrivate,
 				}),
 			});
 			if (res.ok) {
@@ -53,15 +55,7 @@ const EditPrompt = () => {
 		}
 	};
 
-	return (
-		<Form
-			type="Edit"
-			post={post}
-			setPost={setPost}
-			submitting={submitting}
-			handleSubmit={updatePrompt}
-		/>
-	);
+	return <Form type="Edit" post={post} setPost={setPost} submitting={submitting} handleSubmit={updatePrompt} />;
 };
 
 export default EditPrompt;

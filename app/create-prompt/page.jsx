@@ -11,7 +11,7 @@ const CreatePrompt = () => {
 	const { data: session } = useSession();
 
 	const [submitting, setSubmitting] = useState(false);
-	const [post, setPost] = useState({ prompt: "", tag: "" });
+	const [post, setPost] = useState({ prompt: "", tag: "", isPrivate: false });
 
 	const createPrompt = async (e) => {
 		e.preventDefault();
@@ -23,6 +23,7 @@ const CreatePrompt = () => {
 					prompt: post.prompt,
 					userId: session?.user.id,
 					tag: post.tag,
+					isPrivate: post.isPrivate,
 				}),
 			});
 			if (res.ok) {
@@ -32,18 +33,11 @@ const CreatePrompt = () => {
 			console.log(error);
 		} finally {
 			setSubmitting(false);
+			console.log(e);
 		}
 	};
 
-	return (
-		<Form
-			type="Create"
-			post={post}
-			setPost={setPost}
-			submitting={submitting}
-			handleSubmit={createPrompt}
-		/>
-	);
+	return <Form type="Create" post={post} setPost={setPost} submitting={submitting} handleSubmit={createPrompt} />;
 };
 
 export default CreatePrompt;
