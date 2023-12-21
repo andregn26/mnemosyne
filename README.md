@@ -40,8 +40,9 @@ Mnemosyne is a web application built with Next.js that facilitates authenticatio
 
 - [x] As a user, I want to see skeleton components when the data is loading.
 - [x] As a user, I want to add private prompts that are only seen in profile page
-- [] As a user, I want to have the ability to group and organize saved prompts into custom collections.
-- [] As a user, I want to have an option to favorite or mark specific prompts as important for quick access.
+- [ ] As a user, I want to have the ability to make my prompts private.
+- [ ] As a user, I want to have the ability to group and organize saved prompts into custom collections.
+- [ ] As a user, I want to have an option to favorite or mark specific prompts as important for quick access.
 
 ## Lessons Learned
 
