@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mnemosyne
 
-## Getting Started
+Mnemosyne is a web application built with Next.js that facilitates authentication and authorization. It enables users to save and share prompts for use in ChatGPT.
 
-First, run the development server:
+## Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+[Insert GIF or Link to Demo Here]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Include a GIF or a link to a live demo showcasing the functionality of the application.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Client
 
-## Learn More
+- React.js
+- Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+### Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- MongoDB
+- Mongoose
+- NextAuth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+List the technologies and frameworks used in the client and server sides of the project.
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Authentication and Authorization:** Secure user authentication and authorization system.
+- **Prompt Management:** Ability to create, save, and share prompts for ChatGPT.
+- **Next.js Framework:** Leveraging Next.js for server-side rendering and seamless client-side navigation.
+- **Database Integration:** Utilizing MongoDB and Mongoose for efficient database management.
+- **Responsive Design:** Responsive UI design using Tailwind CSS for a seamless user experience across devices.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+List the key features and functionalities offered by the application.
+
+## Lessons Learned
+
+### Challenges Faced
+
+Describe the challenges encountered during the project and how you overcame them. For example:
+
+- Implementing user authentication with NextAuth and handling secure routes.
+- Integrating MongoDB with the server-side code and managing database operations effectively.
+
+### Learnings
+
+Share the lessons learned while building the project. For instance:
+
+- Gained a deeper understanding of authentication and authorization mechanisms.
+- Enhanced skills in using Next.js for server-side rendering and routing.
+- Learned efficient database handling using MongoDB and Mongoose.
+
+This section can be a reflection on the difficulties faced and the knowledge acquired throughout the development process.
