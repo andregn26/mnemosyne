@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 // import useSWR from "swr";
 
-const PromptCardList = ({ data, handleTagClick, isLoading }) => {
+const PromptCardList = ({ postsData, handleTagClick, isLoading }) => {
 	return (
 		<div className="mt-16 xl:mt-4 prompt_layout w-full">
-			{data.map((post) => {
-				console.log(data);
+			{postsData.map((post) => {
 				return (
-					<>
+					<div key={`key-${post._id}`}>
 						{isLoading ? (
 							<div
 								role="status"
@@ -18,9 +17,9 @@ const PromptCardList = ({ data, handleTagClick, isLoading }) => {
 								<span className="sr-only">Loading...</span>
 							</div>
 						) : (
-							<PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />
+							<PromptCard post={post} handleTagClick={handleTagClick} />
 						)}
-					</>
+					</div>
 				);
 			})}
 		</div>
@@ -37,30 +36,13 @@ const Feed = () => {
 
 	//SECTION USE EFFECT
 
-	// const fetcher = (...args) => fetch(...args).then((res) => res.json());
-	// const { data, error } = useSWR("/api/prompt", fetcher);
-	// useEffect(() => {
-	// 	if (data) {
-	// 		setPosts(data);
-	// 	}
-	// }, [data]);
-	// if (error) return <div>Failed to load</div>;
-
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-			console.log("Passed 4 seconds");
-		}, 2000);
-
 		fetch("/api/prompt")
 			.then((res) => res.json())
 			.then((data) => {
 				setPosts(data);
+				setIsLoading(false);
 			});
-
-		return () => {
-			clearTimeout(timer);
-		};
 	}, []);
 
 	//SECTION Vars
@@ -101,9 +83,9 @@ const Feed = () => {
 			</form>
 
 			{searchText ? (
-				<PromptCardList data={searchedResults} handleTagClick={handleTagClick} isLoading={isLoading} />
+				<PromptCardList postsData={searchedResults} handleTagClick={handleTagClick} isLoading={isLoading} />
 			) : (
-				<PromptCardList data={posts} handleTagClick={handleTagClick} isLoading={isLoading} />
+				<PromptCardList postsData={posts} handleTagClick={handleTagClick} isLoading={isLoading} />
 			)}
 		</section>
 	);
