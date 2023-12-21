@@ -1,6 +1,35 @@
 import Link from "next/link";
+import { LockIcon } from "./Icons";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit, isPrivate, setIsPrivate }) => {
+const InputBox = () => {
+	return (
+		<div class="inline-flex items-center">
+			<div className="relative flex items-center rounded-full cursor-pointer">
+				<input
+					checked={post.isPrivate}
+					id="isPrivate-checkbox"
+					type="checkbox"
+					onChange={(e) =>
+						setPost((prevPost) => ({
+							...prevPost,
+							isPrivate: e.target.type === "checkbox" ? e.target.checked : e.target.value,
+						}))
+					}
+					class="peer relative appearance-none w-5 h-5 border rounded-md border-blue-gray-200 cursor-pointer transition-all before:content[''] before:block before:bg-blue-gray-500 before:w-10 before:h-10 before:rounded-full before:absolute before:top-2/4 before:left-2/4 before:-translate-y-2/4 before:-translate-x-2/4 before:opacity-0 hover:before:opacity-10 before:transition-opacity checked:bg-gray-900 checked:border-gray-900 checked:before:bg-gray-900"
+				/>
+				<span class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+					<LockIcon />
+				</span>
+			</div>
+
+			<label class="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor="isPrivate-checkbox">
+				Private prompt
+			</label>
+		</div>
+	);
+};
+
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 	return (
 		<section className="w-full max-w-full flex flex-col items-center xl:grid xl:grid-cols-12 xl:gap-24">
 			<div className="xl:col-span-4">
@@ -39,24 +68,34 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, isPrivate, setIsP
 					/>
 				</label>
 				<div className="flex items-center">
-					<input
-						checked={post.isPrivate}
-						id="checked-checkbox"
-						type="checkbox"
-						onChange={(e) =>
-							setPost((prevPost) => ({
-								...prevPost,
-								isPrivate: e.target.type === "checkbox" ? e.target.checked : e.target.value,
-							}))
-						}
-						value={post.isPrivate}
-						className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-					/>
-					<label
-						htmlFor="checked-checkbox"
-						className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-						Private Prompt
-					</label>
+					<div class="inline-flex items-center">
+						<div className="relative flex items-center rounded-full cursor-pointer">
+							<input
+								checked={post.isPrivate}
+								id="isPrivate-checkbox"
+								type="checkbox"
+								onChange={(e) =>
+									setPost((prevPost) => ({
+										...prevPost,
+										isPrivate:
+											e.target.type === "checkbox"
+												? e.target.checked
+												: e.target.value,
+									}))
+								}
+								class="peer relative appearance-none w-5 h-5 border rounded-md border-violent-violet-950/40 bg-violent-violet-950/40 cursor-pointer transition-all before:content[''] before:block before:bg-violent-violet-950 before:w-10 before:h-10 before:rounded-full before:absolute before:top-2/4 before:left-2/4 before:-translate-y-2/4 before:-translate-x-2/4 before:opacity-0 hover:before:opacity-10 before:transition-opacity checked:bg-violent-violet-950/40 checked:border-violent-violet-950/40 checked:before:bg-violent-violet-950/40"
+							/>
+							<span class="absolute text-gray-300 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+								<LockIcon />
+							</span>
+						</div>
+
+						<label
+							class="relative flex items-center p-3 rounded-full cursor-pointer text-gray-300 ml-2"
+							htmlFor="isPrivate-checkbox">
+							Private prompt
+						</label>
+					</div>
 				</div>
 
 				<div className="flex-end mx-3 mb-5 gap-4">

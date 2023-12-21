@@ -6,7 +6,7 @@ export const GET = async () => {
 	try {
 		await connectToDB();
 
-		const prompts = await Prompt.find({}).populate("creator");
+		const prompts = await Prompt.find({ isPrivate: { $eq: false } }).populate("creator");
 
 		const response = new Response(JSON.stringify(prompts), { status: 200 });
 

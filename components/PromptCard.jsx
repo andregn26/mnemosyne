@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import { LockIcon } from "./Icons";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 	//SECTION VARS
@@ -22,7 +23,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 	};
 
 	return (
-		<div className="prompt_card">
+		<div className="prompt_card relative">
 			<div className="flex justify-between items-start gap-5">
 				<div className="flex-1 flex justify-start items-center gap-3">
 					<Image
@@ -38,13 +39,21 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 						<p className=" text-sm text-gray-400">{post.creator.email}</p>
 					</div>
 				</div>
-				<div className="copy_btn" onClick={handleCopy}>
-					<Image
-						src={copied === post.prompt ? "/assets/icons/tick.svg" : "/assets/icons/copy.svg"}
-						alt="copy_icon"
-						width={12}
-						height={12}
-					/>
+				<div className="flex gap-2 items-center">
+					{post.isPrivate && (
+						<div className="">
+							<LockIcon fillColor="hsl(240, 100%, 91%)" />
+						</div>
+					)}
+
+					<div className="copy_btn" onClick={handleCopy}>
+						<Image
+							src={copied === post.prompt ? "/assets/icons/tick.svg" : "/assets/icons/copy.svg"}
+							alt="copy_icon"
+							width={12}
+							height={12}
+						/>
+					</div>
 				</div>
 			</div>
 			<p className="my-4  text-sm text-gray-200">{post.prompt}</p>
