@@ -4,12 +4,24 @@ import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 // import useSWR from "swr";
 
-const PromptCardList = ({ data, handleTagClick }) => {
+const PromptCardList = ({ data, handleTagClick, isLoading }) => {
 	return (
-		<div className="mt-16 xl:mt-4 prompt_layout">
+		<div className="mt-16 xl:mt-4 prompt_layout w-full">
 			{data.map((post) => {
 				console.log(data);
-				return <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />;
+				return (
+					<>
+						{isLoading ? (
+							<div
+								role="status"
+								className=" !h-48 w-full rounded-lg animate-pulse bg-blush-pink-950/50">
+								<span className="sr-only">Loading...</span>
+							</div>
+						) : (
+							<PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />
+						)}
+					</>
+				);
 			})}
 		</div>
 	);
@@ -38,7 +50,7 @@ const Feed = () => {
 		const timer = setTimeout(() => {
 			setIsLoading(false);
 			console.log("Passed 4 seconds");
-		}, 4000);
+		}, 2000);
 
 		fetch("/api/prompt")
 			.then((res) => res.json())
@@ -87,16 +99,11 @@ const Feed = () => {
 					className="search_input "
 				/>
 			</form>
-			{isLoading ? (
-				<div>Is Loading</div>
+
+			{searchText ? (
+				<PromptCardList data={searchedResults} handleTagClick={handleTagClick} isLoading={isLoading} />
 			) : (
-				<>
-					{searchText ? (
-						<PromptCardList data={searchedResults} handleTagClick={handleTagClick} />
-					) : (
-						<PromptCardList data={posts} handleTagClick={handleTagClick} />
-					)}
-				</>
+				<PromptCardList data={posts} handleTagClick={handleTagClick} isLoading={isLoading} />
 			)}
 		</section>
 	);
