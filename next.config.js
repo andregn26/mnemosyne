@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	experimental: {
-		appDir: true,
-		serverComponentsExternalPackages: ["mongoose"],
+		esmExternals: "loose", // <-- add this
+		serverComponentsExternalPackages: ["mongoose"], // <-- and this
 	},
 	images: {
 		domains: ["lh3.googleusercontent.com"],

@@ -36,13 +36,15 @@ const Feed = () => {
 
 	//SECTION USE EFFECT
 
+	const fetchPosts = async () => {
+		const response = await fetch("/api/prompt");
+		const data = await response.json();
+		setPosts(data);
+		setIsLoading(false);
+	};
+
 	useEffect(() => {
-		fetch("/api/prompt")
-			.then((res) => res.json())
-			.then((data) => {
-				setPosts(data);
-				setIsLoading(false);
-			});
+		fetchPosts();
 	}, []);
 
 	//SECTION Vars
